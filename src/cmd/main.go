@@ -8,7 +8,12 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const profilePrefix = "qi-"
+const (
+	profilePrefix = "qi-"
+	colorReset    = "\033[0m"
+	colorGreen    = "\033[32m"
+	colorYellow   = "\033[33m"
+)
 
 func main() {
 	rootCmd := &cobra.Command{
@@ -28,6 +33,11 @@ func main() {
 			if err != nil {
 				handleErr(err)
 			}
+
+			fmt.Println(colorGreen, " Success!", colorReset)
+			fmt.Println(colorYellow, " Start using your new profile:")
+			fmt.Println()
+			fmt.Println(colorReset, "   $ export AWS_PROFILE="+profilePrefix+env+"-mfa\n", colorReset)
 		},
 	}
 
